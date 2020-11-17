@@ -1,0 +1,20 @@
+{
+    "name": "inkybit",
+    "version": "0.0.1",
+    "description": "Pimoroni Inky:Bit",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*"
+    },
+    "files": [
+        "README.md",
+        "display.cpp",
+        "font.cpp",
+        "shims.d.ts",
+        "inkybit.ts"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "public": true
+}
