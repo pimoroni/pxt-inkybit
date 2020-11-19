@@ -6,10 +6,10 @@ using namespace pxt;
 #define PXT_CREATE_BUFFER(data, len) ManagedBuffer(data, len).leakData()
 #endif
 
-#define DC MICROBIT_PIN_P12
-#define CS MICROBIT_PIN_P8
-#define RESET MICROBIT_PIN_P2
-#define BUSY MICROBIT_PIN_P16
+#define DC uBit.io.P12   // MICROBIT_PIN_P12
+#define CS uBit.io.P8    // MICROBIT_PIN_P8
+#define RESET uBit.io.P2 // MICROBIT_PIN_P2
+#define BUSY uBit.io.P16 // MICROBIT_PIN_P16
 
 #define DRIVER_CONTROL 0x01
 #define GATE_VOLTAGE 0x03
@@ -69,54 +69,51 @@ uint8_t *buf_b;
 uint8_t *buf_r;
 
 SPI spi(MOSI, MISO, SCK);
-MicroBitPin *pin_spi_dc;
-MicroBitPin *pin_spi_cs;
-MicroBitPin *pin_reset;
-MicroBitPin *pin_busy;
 
 bool initialized = false;
 
 
 namespace inkybit {
     void busyWait() {
-        while(pin_busy->getDigitalValue()) {
+        while(BUSY.getDigitalValue()) {
+            uBit.sleep(50);
         }
     }
     void spiCommand(uint8_t command, const uint8_t *data, int len) {
-        pin_spi_cs->setDigitalValue(CS_ACTIVE);
-        pin_spi_dc->setDigitalValue(DC_COMMAND);
+        CS.setDigitalValue(CS_ACTIVE);
+        DC.setDigitalValue(DC_COMMAND);
         spi.write(command);
         if (len > 0) {
-            pin_spi_dc->setDigitalValue(DC_DATA);
+            DC.setDigitalValue(DC_DATA);
             //spi.write((const char *)data, len, NULL, 0);
             for(auto x = 0; x < len; x++){
                 spi.write(data[x]);
             }
         }
-        pin_spi_cs->setDigitalValue(CS_INACTIVE);
+        CS.setDigitalValue(CS_INACTIVE);
     }
     void spiCommand(uint8_t command) {
         spiCommand(command, NULL, 0);
     }
     void spiCommand(uint8_t command, std::initializer_list<uint8_t> data) {
-        pin_spi_cs->setDigitalValue(CS_ACTIVE);
-        pin_spi_dc->setDigitalValue(DC_COMMAND);
+        CS.setDigitalValue(CS_ACTIVE);
+        DC.setDigitalValue(DC_COMMAND);
         spi.write(command);
-        pin_spi_dc->setDigitalValue(DC_DATA);
+        DC.setDigitalValue(DC_DATA);
         //spi.write((const char *)data, len, NULL, 0);
         for(auto c : data){
             spi.write(c);
         }
-        pin_spi_cs->setDigitalValue(CS_INACTIVE);
+        CS.setDigitalValue(CS_INACTIVE);
     }
     void spiData(uint8_t *data, int len) {
-        pin_spi_cs->setDigitalValue(CS_ACTIVE);
-        pin_spi_dc->setDigitalValue(DC_DATA);
+        CS.setDigitalValue(CS_ACTIVE);
+        DC.setDigitalValue(DC_DATA);
 	    for(auto x = 0; x < len; x++){
             spi.write(data[x]);
 	    }
         //spi.write((const char *)data, len, NULL, 0);
-        pin_spi_cs->setDigitalValue(CS_INACTIVE);
+        CS.setDigitalValue(CS_INACTIVE);
     }
     //%
     void clear() {
@@ -129,11 +126,13 @@ namespace inkybit {
     }
     //%
     void setPixel(int x, int y, int color) {
+        if(x >= WIDTH) return;
+        if(y >= HEIGHT) return;
         y += OFFSET_Y;
-        x = COLS - 1 - y;
-        uint8_t shift = 7 - y % 8;
+        y = COLS - 1 - y;
+        uint8_t shift = 7 - (y % 8);
         y /= 8;
-        uint16_t offset = x * (COLS / 8) + y;
+        uint16_t offset = (x * (COLS / 8)) + y;
 
         uint8_t byte_b = buf_b[offset] | (0b1 << shift);
         uint8_t byte_r = buf_r[offset] & ~(0b1 << shift);
@@ -148,18 +147,16 @@ namespace inkybit {
         buf_b[offset] = byte_b;
         buf_r[offset] = byte_r;
     }
-    //%
-    void drawIcon(int x, int y, int icon, int color) {
-    }
+
     //%
     void show() {
-        pin_reset->setDigitalValue(0);
-        fiber_sleep(500);
-        pin_reset->setDigitalValue(1);
-        fiber_sleep(500);
+        RESET.setDigitalValue(0);
+        uBit.sleep(100);
+        RESET.setDigitalValue(1);
+        uBit.sleep(100);
 
         spiCommand(0x12);
-        fiber_sleep(1000);
+        uBit.sleep(500);
         busyWait();
 
         spiCommand(DRIVER_CONTROL, {ROWS - 1, (ROWS - 1) >> 8, 0x00});
@@ -191,11 +188,6 @@ namespace inkybit {
         buf_b = (uint8_t *)malloc((COLS / 8) * ROWS);
         buf_r = (uint8_t *)malloc((COLS / 8) * ROWS);
         clear();
-
-        pin_spi_dc = getPin(DC);
-        pin_spi_cs = getPin(CS);
-        pin_reset = getPin(RESET);
-        pin_busy = getPin(BUSY);
 
         initialized = true;
     }
