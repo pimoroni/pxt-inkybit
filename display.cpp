@@ -63,8 +63,6 @@ constexpr uint8_t ROWS = 250;
 constexpr uint8_t OFFSET_X = 0;
 constexpr uint8_t OFFSET_Y = 6;
 
-//uint8_t buf_b[(COLS / 8) * ROWS];
-//uint8_t buf_r[(COLS / 8) * ROWS];
 uint8_t *buf_b;
 uint8_t *buf_r;
 
@@ -79,51 +77,50 @@ namespace inkybit {
             uBit.sleep(50);
         }
     }
+
     void spiCommand(uint8_t command, const uint8_t *data, int len) {
         CS.setDigitalValue(CS_ACTIVE);
         DC.setDigitalValue(DC_COMMAND);
         spi.write(command);
         if (len > 0) {
             DC.setDigitalValue(DC_DATA);
-            //spi.write((const char *)data, len, NULL, 0);
             for(auto x = 0; x < len; x++){
                 spi.write(data[x]);
             }
         }
         CS.setDigitalValue(CS_INACTIVE);
     }
+
     void spiCommand(uint8_t command) {
         spiCommand(command, NULL, 0);
     }
+
     void spiCommand(uint8_t command, std::initializer_list<uint8_t> data) {
         CS.setDigitalValue(CS_ACTIVE);
         DC.setDigitalValue(DC_COMMAND);
         spi.write(command);
         DC.setDigitalValue(DC_DATA);
-        //spi.write((const char *)data, len, NULL, 0);
         for(auto c : data){
             spi.write(c);
         }
         CS.setDigitalValue(CS_INACTIVE);
     }
+
     void spiData(uint8_t *data, int len) {
         CS.setDigitalValue(CS_ACTIVE);
         DC.setDigitalValue(DC_DATA);
 	    for(auto x = 0; x < len; x++){
             spi.write(data[x]);
 	    }
-        //spi.write((const char *)data, len, NULL, 0);
         CS.setDigitalValue(CS_INACTIVE);
     }
+
     //%
     void clear() {
         memset(buf_b, 0xff, (COLS / 8) * ROWS);
         memset(buf_r, 0x00, (COLS / 8) * ROWS);
     }
-    //%
-    int getPixel(int x, int y) {
-        return 0;
-    }
+
     //%
     void setPixel(int x, int y, int color) {
         if(x >= WIDTH) return;
@@ -178,12 +175,10 @@ namespace inkybit {
         busyWait();
         spiCommand(MASTER_ACTIVATE);
     }
+
     //%
     void init() {
         if(initialized) return;
-
-        //spi.setFrequency(1000000);
-        //spi.setMode(0);
 
         buf_b = (uint8_t *)malloc((COLS / 8) * ROWS);
         buf_r = (uint8_t *)malloc((COLS / 8) * ROWS);
