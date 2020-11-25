@@ -88,7 +88,7 @@ namespace inkybit {
         //% block="medium (3x)"
         Medium = 3,
         //% block="large (4x)"
-        Huge = 4
+        Large = 4
     }
 
     let _pixelSize: number = 1
@@ -129,7 +129,7 @@ namespace inkybit {
      * @param color - color to set (0-2)
      */
     /*
-    // blockId=inkybit_set_icon
+    // blockId=inkybit_draw_icon
     // block="draw icon %icon| at x %x| y %y| with color %color| and size %size"
     // icon.fieldEditor="gridpicker"
     // icon.fieldOptions.width="400" icon.fieldOptions.columns="5"
@@ -137,9 +137,9 @@ namespace inkybit {
     // x.min=0 x.max=249
     // y.min=0 y.max=119
     */
-    export function setIcon(icon: IconNames, x: number, y: number, color: Color = Color.Black, size: TextSize = TextSize.Regular): void {
+    export function drawIcon(icon: IconNames, x: number, y: number, color: Color = Color.Black, size: TextSize = TextSize.Regular): void {
         let image: Image = images.iconImage(icon)
-        setImage(image, x, y, color, size)
+        drawImage(image, x, y, color, size)
     }
 
     /**
@@ -150,28 +150,28 @@ namespace inkybit {
      * @param color - color to set (0-2)
      */
     /*
-    // blockId=inkybit_set_arrow
+    // blockId=inkybit_draw_arrow
     // block="draw arrow %arrow| at x %x| y %y| with color %color| and size %size"
     // x.min=0 x.max=249
     // y.min=0 y.max=119
     */
-    export function setArrow(arrow: ArrowNames, x: number, y: number, color: Color = Color.Black, size: TextSize = TextSize.Regular): void {
+    export function drawArrow(arrow: ArrowNames, x: number, y: number, color: Color = Color.Black, size: TextSize = TextSize.Regular): void {
         let image: Image = images.arrowImage(arrow)
-        setImage(image, x, y, color, size)
+        drawImage(image, x, y, color, size)
     }
 
     /**
-     * Display an image on inky:bit
+     * Draw an image on inky:bit
      * @param image - image to display
      * @param x - x position (0-249)
      * @param y - y position (0-119)
      * @param color - color to set (0-2)
      */
-    //% blockId=inkybit_set_image
+    //% blockId=inkybit_draw_image
     //% block="draw image %image| at x %x| y %y| with color %color| and size %size"
     //% x.min=0 x.max=249
     //% y.min=0 y.max=119
-    export function setImage(image: Image, x: number, y: number, color: Color = Color.Black, size: TextSize = TextSize.Regular): void {
+    export function drawImage(image: Image, x: number, y: number, color: Color = Color.Black, size: TextSize = TextSize.Regular): void {
         let rows: number = 5 * size
         let cols: number = image.width() * size
         for (let c_row = 0; c_row < rows; c_row++) {
@@ -333,11 +333,11 @@ namespace inkybit {
         let cols: number = 5 * size
 
         if (char.charCodeAt(0) > DAL.MICROBIT_FONT_ASCII_END + ARROWOFFSET) {
-            setArrow(char.charCodeAt(0) - DAL.MICROBIT_FONT_ASCII_END - ARROWOFFSET - 1, x, y, color, size)
+            drawArrow(char.charCodeAt(0) - DAL.MICROBIT_FONT_ASCII_END - ARROWOFFSET - 1, x, y, color, size)
             return
         }
         if (char.charCodeAt(0) > DAL.MICROBIT_FONT_ASCII_END) {
-            setIcon(char.charCodeAt(0) - DAL.MICROBIT_FONT_ASCII_END - 1, x, y, color, size)
+            drawIcon(char.charCodeAt(0) - DAL.MICROBIT_FONT_ASCII_END - 1, x, y, color, size)
             return
         }
         let data: Buffer = getChar(char)
@@ -378,6 +378,28 @@ namespace inkybit {
             drawChar(text.charAt(char_index), x, y, color, size)
             x += width + (1 * size) // 1px space between chars
         }
+    }
+
+    /**
+     * Return the width of inky:bit
+     */
+    //% blockId=scrollbit_cols
+    //% block="width"
+    //% color=#444444
+    //% icon=""
+    export function width(): number {
+        return WIDTH
+    }
+
+    /**
+     * Return the height of inky:bit
+     */
+    //% blockId=inkybit_height
+    //% block="height"
+    //% color=#444444
+    //% icon=""
+    export function height(): number {
+        return HEIGHT
     }
 
     /**

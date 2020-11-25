@@ -10,9 +10,9 @@ inkybit.drawRectangle(0, 30, 249, 60, inkybit.Color.White, true)
 
 inkybit.drawText("Hello, my name is:", 10, 10, inkybit.Color.White, inkybit.TextSize.Regular)
 
-let size: number = inkybit.measureText("Phillius", inkybit.TextSize.Huge)
+let size: number = inkybit.measureText("Phillius", inkybit.TextSize.Large)
 let x: number = Math.floor((250 - size) / 2)
-inkybit.drawText("Phillius", x, 50, inkybit.Color.Black, inkybit.TextSize.Huge)
+inkybit.drawText("Phillius", x, 50, inkybit.Color.Black, inkybit.TextSize.Large)
 
 
 
