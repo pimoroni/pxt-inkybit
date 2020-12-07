@@ -32,8 +32,9 @@ inkybit.drawText("Ahoy", 1, 1, inkybit.Color.Black, inkybit.TextSize.Regular)
 inkybit.drawText("Hello {Asleep}", 1, 22)
 
 // Icons
-inkybit.setIcon(IconNames.Heart, 0, 1, inkybit.Color.Accent, inkybit.TextSize.Tiny)
-inkybit.setIcon(IconNames.Heart, 0, 6, inkybit.Color.Accent, inkybit.TextSize.Regular)
-inkybit.setIcon(IconNames.Heart, 0, 41, inkybit.Color.Accent, inkybit.TextSize.Medium)
+inkybit.drawIcon(IconNames.Heart, 0, 1, inkybit.Color.Accent, inkybit.TextSize.Tiny)
+inkybit.drawIcon(IconNames.Heart, 0, 6, inkybit.Color.Accent, inkybit.TextSize.Regular)
+inkybit.drawIcon(IconNames.Heart, 0, 41, inkybit.Color.Accent, inkybit.TextSize.Medium)
+inkybit.drawIcon(IconNames.Heart, 41, 0, inkybit.Color.Accent, inkybit.TextSize.Large)
 
 inkybit.show()
