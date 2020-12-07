@@ -1,6 +1,6 @@
 # inky:bit
 
- [![Build Status](https://travis-ci.org/pimoroni/pxt-inkybit.svg?branch=master)](https://travis-ci.org/pimoroni/pxt-inkybit)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/pimoroni/pxt-inkybit/MakeCode)
 
  A 250x122 pixel, tri-colour e-ink display for low frequency, high visibility status display.
 
