@@ -4,11 +4,11 @@
 
  A 250x122 pixel, tri-colour e-ink display for low frequency, high visibility status display.
 
-This package adds support for the Pimoroni inky:bit to makecode.microbit.org.
+This extension adds support for the Pimoroni inky:bit to makecode.microbit.org.
 
-A inky:bit is required to use this package, grab yours here: https://shop.pimoroni.com/products/inky-bit
+A inky:bit is required to use this extension, grab yours here: https://shop.pimoroni.com/products/inky-bit
 
-To use this package, go to https://makecode.microbit.org/, click "Advanced" then "Add Package" and search for inky:bit. 
+To use this extension, go to https://makecode.microbit.org/, click "Advanced" then "Add Package" and search for inky:bit.
 
 ## JavaScript Reference
 
@@ -173,7 +173,7 @@ Here's a list of icons you can use:
 
 MIT License
 
-Copyright (c) 2018 Pimoroni Ltd.
+Copyright (c) 2020 Pimoroni Ltd.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
