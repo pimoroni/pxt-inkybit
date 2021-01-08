@@ -213,6 +213,8 @@ namespace inkybit {
      * Draw a rectangle on inky:bit
      * @param x - x position (0-249)
      * @param y - y position (0-119)
+     * @param width - width (0-249)
+     * @param height - height (0-119)
      * @param color - color to set (0-2)
      * @param filled - whether to fill the rectangle with color
      */
@@ -220,6 +222,8 @@ namespace inkybit {
     //% block="draw rectangle at x %x| y %y| width %width| height %height| color %color| filled %filled"
     //% x.min=0 x.max=249
     //% y.min=0 y.max=119
+    //% width.min=0 width.max=249
+    //% width.min=0 width.max=119
     export function drawRectangle(x: number, y: number, width: number, height: number, color: Color = Color.Black, filled: Boolean = false): void {
         let c: number = color
         let px: number = 0
