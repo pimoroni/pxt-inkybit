@@ -38,3 +38,5 @@ inkybit.drawIcon(IconNames.Heart, 0, 41, inkybit.Color.Accent, inkybit.TextSize.
 inkybit.drawIcon(IconNames.Heart, 41, 0, inkybit.Color.Accent, inkybit.TextSize.Large)
 
 inkybit.show()
+
+inkybit.clear()

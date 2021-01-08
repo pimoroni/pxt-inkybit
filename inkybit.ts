@@ -409,7 +409,17 @@ namespace inkybit {
     //% blockId=inkybit_show
     //% block="display your changes"
     export function show() {
-        _show() 
+        _show()
+    }
+
+    /**
+     * Clear inky:bit,
+     * clear the e-ink display for a blank canvas
+     */
+    //% blockId=inkybit_clear
+    //% block="clear the display"
+    export function clear() {
+        _clear()
     }
 
     export function init() {
