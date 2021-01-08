@@ -2,11 +2,11 @@
   "name": "pxt-inkybit",
   "version": "0.0.1",
   "dependencies": {
-    "pxt": "^5.0.0"
+    "pxt": "^0.5.1"
   },
   "devDependencies": {
     "pxt-core": "^5.0.0",
-    "pxt-microbit": "^3.1.36"
+    "pxt-microbit": "^3.1.47"
   },
   "scripts": {
     "pxt:init": "pxt target microbit",
