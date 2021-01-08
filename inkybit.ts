@@ -426,6 +426,27 @@ namespace inkybit {
         _clear()
     }
 
+    /**
+     * Clear a rectangle on inky:bit
+     * @param x - x position (0-249)
+     * @param y - y position (0-119)
+     * @param width - width (0-249)
+     * @param height - height (0-119)
+     */
+    //% blockId=inkybit_clear_rectangle
+    //% block="clear rectangle at x %x| y %y| width %width| height %height"
+    //% x.min=0 x.max=249
+    //% y.min=0 y.max=119
+    //% width.min=0 width.max=249
+    //% width.min=0 width.max=119
+    export function clearRectangle(x: number, y: number, width: number, height: number): void {
+        let c: number = Color.White
+        let ly: number = 0
+        for(ly = y; ly <= y + height; ly++) {
+            drawLine(x, ly, x + width, ly, c)
+        }
+    }
+
     export function init() {
         _init()
     }
