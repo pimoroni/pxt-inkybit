@@ -1,4 +1,4 @@
-//% weight=100 color=#000000 icon="\uf043" block="Inky:Bit"
+//% weight=100 color=#008080 icon="\uf043" block="Inky:Bit"
 namespace inkybit {
     
     const WIDTH: number = 250
@@ -294,7 +294,7 @@ namespace inkybit {
      */
     //% blockId=inkybit_set_pixel_size
     //% block="set pixel size to %size"
-    //% advanced color=#220000
+    //% advanced
     //% size.defl=1
     export function setPixelSize(size: PixelSize = PixelSize.Normal): void {
         _pixelSize = size
@@ -305,7 +305,7 @@ namespace inkybit {
      */
     //% blockId=inkybit_get_pixel_size
     //% block="get pixel size"
-    //% advanced color=#220000
+    //% advanced
     export function getPixelSize(): PixelSize {
         return _pixelSize
     }
@@ -316,7 +316,7 @@ namespace inkybit {
      */
     //% blockId=inkybit_measure_text
     //% block="get length of %text in pixels| at size %size"
-    //% advanced color=#554444
+    //% advanced
     export function measureText(text: string, size: TextSize = TextSize.Regular): number {
         let len: number = 0
         for (let x: number = 0; x < text.length; x++){
@@ -389,7 +389,6 @@ namespace inkybit {
      */
     //% blockId=scrollbit_cols
     //% block="width"
-    //% color=#444444
     //% icon=""
     export function width(): number {
         return WIDTH
@@ -400,7 +399,6 @@ namespace inkybit {
      */
     //% blockId=inkybit_height
     //% block="height"
-    //% color=#444444
     //% icon=""
     export function height(): number {
         return HEIGHT
