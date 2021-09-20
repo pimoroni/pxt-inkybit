@@ -289,7 +289,7 @@ namespace inkybit {
     }
 
     /**
-     * Set scroll:bit pixel size
+     * Set Inky:bit pixel size
      * @param size - pixel size (1 to 4)
      */
     //% blockId=inkybit_set_pixel_size
@@ -301,7 +301,7 @@ namespace inkybit {
     }
 
     /**
-     * Get scroll:bit pixel size
+     * Get Inky:bit pixel size
      */
     //% blockId=inkybit_get_pixel_size
     //% block="get pixel size"
@@ -357,7 +357,7 @@ namespace inkybit {
     }
 
     /**
-     * Draw text on scroll:bit
+     * Draw text on Inky:bit
      * @param col - column to set (0-16)
      * @param row - row to set (0-6)
      * @param text - text to show
@@ -387,7 +387,7 @@ namespace inkybit {
     /**
      * Return the width of inky:bit
      */
-    //% blockId=scrollbit_cols
+    //% blockId=Inkybit_cols
     //% block="width"
     //% icon=""
     export function width(): number {
