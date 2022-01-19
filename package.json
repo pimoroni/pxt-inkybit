@@ -6,7 +6,7 @@
   },
   "devDependencies": {
     "pxt-core": "^5.0.0",
-    "pxt-microbit": "^3.1.47"
+    "pxt-microbit": "^3.1.95"
   },
   "scripts": {
     "pxt:init": "pxt target microbit",
