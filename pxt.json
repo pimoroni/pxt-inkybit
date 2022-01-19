@@ -16,5 +16,8 @@
     "testFiles": [
         "test.ts"
     ],
+    "disablesVariants": [
+        "mbdal"
+    ],
     "public": true
 }
