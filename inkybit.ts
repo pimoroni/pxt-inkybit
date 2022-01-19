@@ -129,13 +129,13 @@ namespace inkybit {
      * @param color - color to set (0-2)
      */
     /*
-    // blockId=inkybit_draw_icon
-    // block="draw icon %icon| at x %x| y %y| with color %color| and size %size"
-    // icon.fieldEditor="gridpicker"
-    // icon.fieldOptions.width="400" icon.fieldOptions.columns="5"
-    // icon.fieldOptions.itemColour="black" icon.fieldOptions.tooltips="true"
-    // x.min=0 x.max=249
-    // y.min=0 y.max=119
+    //% blockId=inkybit_draw_icon
+    //% block="draw icon %icon| at x %x| y %y| with color %color| and size %size"
+    //% icon.fieldEditor="gridpicker"
+    //% icon.fieldOptions.width="400" icon.fieldOptions.columns="5"
+    //% icon.fieldOptions.itemColour="black" icon.fieldOptions.tooltips="true"
+    //% x.min=0 x.max=249
+    //% y.min=0 y.max=119
     */
     export function drawIcon(icon: IconNames, x: number, y: number, color: Color = Color.Black, size: TextSize = TextSize.Regular): void {
         let image: Image = images.iconImage(icon)
@@ -150,10 +150,10 @@ namespace inkybit {
      * @param color - color to set (0-2)
      */
     /*
-    // blockId=inkybit_draw_arrow
-    // block="draw arrow %arrow| at x %x| y %y| with color %color| and size %size"
-    // x.min=0 x.max=249
-    // y.min=0 y.max=119
+    //% blockId=inkybit_draw_arrow
+    //% block="draw arrow %arrow| at x %x| y %y| with color %color| and size %size"
+    //% x.min=0 x.max=249
+    //% y.min=0 y.max=119
     */
     export function drawArrow(arrow: ArrowNames, x: number, y: number, color: Color = Color.Black, size: TextSize = TextSize.Regular): void {
         let image: Image = images.arrowImage(arrow)
